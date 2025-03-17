@@ -2,7 +2,7 @@
   <v-container>
     <v-card>
       <v-card-title>
-        Documentos
+        Documents
         <v-spacer></v-spacer>
         <v-card-title>
           Filters:
@@ -89,7 +89,7 @@
   import type { DocumentFilter } from '../services/DocumentService';
   import type { ApiErrorResponse } from '../services/DocumentService';
   import DeleteDialog from '../components/DeleteDialog.vue';
-  import CreateEditDialog from '../components/CreateEditDialog.vue';
+  import CreateEditDialog from '../components/CreateEditDocumentDialog.vue';
   import AttachFileDialog from '../components/AttachFileDialog.vue';
   import { useToast } from "vue-toastification";
   import { watch } from 'vue';
