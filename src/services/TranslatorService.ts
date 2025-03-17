@@ -40,7 +40,11 @@ export interface TransaltorPageResponse {
 }
 
 export const translatorService = {
-  async fetchTranslators(page: number, size: number, searchString: TransaltorFilter): Promise<TransaltorPageResponse> {
+  async fetchTranslators(
+    page: number,
+    size: number,
+    searchString: TransaltorFilter,
+  ): Promise<TransaltorPageResponse> {
     const response = await axios.get<TransaltorPageResponse>(`${route}`, {
       params: { page, size, ...searchString },
     });
@@ -57,8 +61,14 @@ export const translatorService = {
     return response.data;
   },
 
-  async updateTranslator(TranslatorId: number, Translator: TranslatorCreate): Promise<TranslatorCreate> {
-    const response = await axios.put<TranslatorCreate>(`${route}/${TranslatorId}`, Translator);
+  async updateTranslator(
+    TranslatorId: number,
+    Translator: TranslatorCreate,
+  ): Promise<TranslatorCreate> {
+    const response = await axios.put<TranslatorCreate>(
+      `${route}/${TranslatorId}`,
+      Translator,
+    );
     return response.data;
   },
 
@@ -66,4 +76,3 @@ export const translatorService = {
     await axios.delete(`${route}/${id}`);
   },
 };
-

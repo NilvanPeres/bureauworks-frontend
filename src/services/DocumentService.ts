@@ -1,4 +1,5 @@
 import axios from "axios";
+import type { LangCountryEnum } from "@/commons/LangEnum";
 
 const route = "document";
 
@@ -13,16 +14,14 @@ export interface DocumentAllFields {
   author: string;
   subject: string;
   content: string;
-  locale: string;
+  locale: LangCountryEnum | null;
 }
-
 
 export interface ApiErrorResponse {
   error: number;
   message: string;
   timestamp: string;
 }
-
 
 export interface DocumentFilter {
   author?: string;
@@ -40,7 +39,11 @@ export interface DocumentResponse {
 }
 
 export const documentService = {
-  async fetchDocuments(page: number, size: number, searchString: DocumentFilter): Promise<DocumentResponse> {
+  async fetchDocuments(
+    page: number,
+    size: number,
+    searchString: DocumentFilter,
+  ): Promise<DocumentResponse> {
     const response = await axios.get<DocumentResponse>(`${route}`, {
       params: { page, size, ...searchString },
     });
@@ -52,13 +55,21 @@ export const documentService = {
     return response.data;
   },
 
-  async createDocument(document: DocumentAllFields): Promise<DocumentAllFields> {
+  async createDocument(
+    document: DocumentAllFields,
+  ): Promise<DocumentAllFields> {
     const response = await axios.post<DocumentAllFields>(`${route}`, document);
     return response.data;
   },
 
-  async updateDocument(documentId: number,document: DocumentAllFields): Promise<DocumentAllFields> {
-    const response = await axios.put<DocumentAllFields>(`${route}/${documentId}`, document);
+  async updateDocument(
+    documentId: number,
+    document: DocumentAllFields,
+  ): Promise<DocumentAllFields> {
+    const response = await axios.put<DocumentAllFields>(
+      `${route}/${documentId}`,
+      document,
+    );
     return response.data;
   },
 
@@ -68,14 +79,12 @@ export const documentService = {
 
   async insertBatchDocuments(file: File): Promise<void> {
     const formData = new FormData();
-    formData.append('file', file);
-  
+    formData.append("file", file);
+
     await axios.post(`${route}/file`, formData, {
       headers: {
-        'Content-Type': 'multipart/form-data',
+        "Content-Type": "multipart/form-data",
       },
     });
-  }
-  
+  },
 };
-
