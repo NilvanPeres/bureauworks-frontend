@@ -1,5 +1,11 @@
 {
   "files": [],
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "strict": true,
+    "skipLibCheck": true
+  },
   "references": [
     {
       "path": "./tsconfig.node.json"

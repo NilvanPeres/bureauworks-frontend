@@ -15,6 +15,13 @@ export default defineConfig({
     vuetify({ autoImport: true }),
   ],
   server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8080', // URL do backend
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''), // Remove o prefixo "/api"
+      },
+    },
     host: '127.0.0.1',
     port: 8000 
   },

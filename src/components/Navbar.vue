@@ -18,7 +18,7 @@
   {
     title: 'Documents',
     value: 'document',
-    route: '/documents', 
+    route: '/Document', 
   },
   {
     title: 'Translator',
