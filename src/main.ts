@@ -23,7 +23,7 @@ const vuetify = createVuetify({
   },
 });
 
-axios.defaults.baseURL = "http://localhost:8080/api/v1/";
+axios.defaults.baseURL = "https://5026-2804-14c-6532-40a4-ec0a-ef6f-3b82-528.ngrok-free.app/api/v1/";
 
 const toastOptions: PluginOptions = {
   position: POSITION.TOP_RIGHT,
